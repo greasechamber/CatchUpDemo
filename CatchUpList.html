@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=414, height=896, initial-scale=1.0" />
+  <title>Catch Up App</title>
+  <link rel="stylesheet" href="css/wrappedStyle.css" />
+  <link rel="stylesheet" href="sidebar.css" />
+  <link rel="stylesheet" href="addAccounts.css" />
+</head>
+<body>
+  <div class="phone-screen">
+
+    <div class="header-container">
+      <div class="header">
+        <button id="backButton">
+          <img src="icons/back.png" alt="Back icon" class="header-icon">
+        </button>
+        <button id="appTitle">
+          <img src="icons/title.png" alt="Title" class="header-title">
+        </button>
+        <button id="menu-btn">
+          <img src="icons/menu.png" alt="Menu icon" class="header-icon">
+        </button>
+      </div>
+    </div>
+
+    <!--OVERLAY-->
+    <div class="overlay" id="overlay"></div>
+
+    <!--SIDEBAR-->
+    <aside class="sidebar" id="sidebar">
+      <button class="close-btn" id="close-btn">×</button>
+      <nav>
+        <ul>
+          <li>
+            <a href="html/setting/setting.html">
+              <img src="settings.png" class="sidebar-icon" alt="Info">
+              Settings
+            </a>
+          </li>
+          <li>
+            <a href="CatchUpList.html">
+              <img src="list.png" class="sidebar-icon" alt="List">
+              Catch Up List
+            </a>
+          </li>
+          <li>
+            <a href="help.html">
+              <img src="help.png" class="sidebar-icon" alt="Help">
+              Help
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!--CATCH UP LIST-->
+    <div class="body-container">
+        <!-- header row: title + add -->
+        <div class="list-header">
+          <div class="page-title">Catch Up List:</div>
+          <button class="add-btn" id="gotoAdd">+ ADD</button>
+        </div>
+  
+        <!-- scrollable list -->
+        <div class="catch-up-list">
+          <div class="social-list" id="catchUpList"></div>
+        </div>
+      </div>
+
+    <!-- Footer -->
+    <div class="footer-container">
+      <div class="footer-nav">
+        <button class = "footer-nav-button">
+            <img id="socialMediaButton" src="icons/socialmedia.png" alt="Social media icon" class="icon"><br>
+            Social Media
+        </button>
+        <button class = "footer-nav-button">
+          <img id="messageButton" src="icons/message.png" alt = "Message icon" class="icon"><br>
+          Message
+        </button>
+        <button class = "footer-nav-button" id = "searchNavigation">
+          <img id="searchButton" src="icons/search.png" alt="Search icon" class="icon"><br>
+          Search
+        </button>
+        <button class = "footer-nav-button" id = "profileNavigation">
+          <img id="profileButton" src="icons/profile.png" alt="Profile icon" class="icon"><br>
+          Profile
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("socialMediaButton").onclick = function () {
+        location.href = 'html/social_media/wrapped_Baby.html';
+    };
+
+    document.getElementById("messageButton").onclick = function () {
+        location.href = 'messaging.html';
+    };
+
+    document.getElementById("searchButton").onclick = function () {
+        location.href = 'post-search.html';
+    };
+
+    document.getElementById("profileButton").onclick = function () {
+        location.href = 'html/profiles/profile_Self.html';
+    };
+
+    document.getElementById("appTitle").addEventListener("click", () => {
+            window.location.href = "/html/social_media/wrapped_Baby.html";
+            
+            const fromDate = document.getElementById("dateInputFrom").value;
+            const toDate = document.getElementById("dateInputTo").value;
+
+            localStorage.setItem("fromDate", fromDate);
+            localStorage.setItem("toDate", toDate);
+    });
+
+    document.getElementById("appTitle").addEventListener("click", () => {
+            window.location.href = "/html/social_media/wrapped_Baby.html";
+            
+            const fromDate = document.getElementById("dateInputFrom").value;
+            const toDate = document.getElementById("dateInputTo").value;
+
+            localStorage.setItem("fromDate", fromDate);
+            localStorage.setItem("toDate", toDate);
+    });
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    function openNav() {
+      sidebar.classList.add('open');
+      overlay.classList.add('visible');
+    }
+    function closeNav() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+    }
+    menuBtn.addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    overlay.addEventListener('click', closeNav);
+    document.addEventListener('click', e => {
+      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) closeNav();
+    });
+  </script>
+
+  <script>
+  ;(function() {
+    const STORAGE_KEY = 'catchUpAccounts';
+
+    const defaultAccounts = [
+    { username: '@jacksonabat',icon: 'facebook',page: 'html/social_media/wrapped_Beach.html'},
+    { username: '@commonkat',icon: 'tiktok',page: 'html/social_media/wrapped_Cat.html'},
+    { username: '@Psikoe',icon: 'instagram',page: 'html/social_media/wrapped_Squirrel.html'},
+    { username: '@veratar',icon: 'facebook',page: 'html/social_media/wrapped_Baby.html'},
+    ];
+
+    let accounts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+    const listRoot  = document.getElementById('catchUpList');
+    const clearBtn  = document.getElementById('clearAllBtn');
+    const addBtn    = document.getElementById('gotoAdd');
+
+    function renderList() {
+    listRoot.innerHTML = '';
+
+    defaultAccounts.forEach(acc => {
+        const item = document.createElement('div');
+        item.className = 'catch-up-item';
+
+        // click → your custom page
+        item.addEventListener('click', () => {
+        window.location.href = acc.page;
+        });
+
+        const avatar = document.createElement('img');
+        avatar.src       = 'icons/male_black.png';
+        avatar.className = 'avatar';
+        item.appendChild(avatar);
+
+        const name = document.createElement('span');
+        name.textContent = acc.username;
+        name.className = 'username';
+        item.appendChild(name);
+
+        const icon = document.createElement('img');
+        icon.src       = `icons/${acc.icon}.png`;
+        icon.className = 'platform-icon';
+        item.appendChild(icon);
+
+        listRoot.appendChild(item);
+    });
+
+    accounts.forEach((acc, idx) => {
+        const item = document.createElement('div');
+        item.className = 'catch-up-item';
+
+        const avatar = document.createElement('img');
+        avatar.src       = 'icons/male_black.png';
+        avatar.className = 'avatar';
+        item.appendChild(avatar);
+
+        const name = document.createElement('span');
+        name.textContent = acc.username;
+        name.className = 'username';
+        item.appendChild(name);
+
+        const icon = document.createElement('img');
+        icon.src       = `icons/${acc.platform}.png`;
+        icon.className = 'platform-icon';
+        item.appendChild(icon);
+
+        // delete-single button
+        const delBtn = document.createElement('button');
+        delBtn.type        = 'button';
+        delBtn.className   = 'delete-btn';
+        delBtn.innerHTML   = '×';
+        delBtn.title       = 'Remove this account';
+        delBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        accounts.splice(idx, 1);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
+        renderList();
+        });
+
+        item.appendChild(delBtn);
+        listRoot.appendChild(item);
+    });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+    renderList();
+    addBtn.addEventListener('click', () => {
+        window.location.href = 'addAccounts.html';
+    });
+    clearBtn.addEventListener('click', () => {
+        accounts = [];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
+        renderList();
+    });
+    });
+
+    window.addEventListener('storage', e => {
+    if (e.key === STORAGE_KEY) {
+        accounts = JSON.parse(e.newValue || '[]');
+        renderList();
+    }
+    });
+  })();
+</script>
+</body>
+</html>

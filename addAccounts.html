@@ -1,0 +1,219 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=414, height=896, initial-scale=1.0">
+    <title>Catch Up App</title>
+    <link rel="stylesheet" href="helpStyle.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link rel="stylesheet" href="addAccounts.css">
+    <!-- <script src="script.js"></script> -->
+  </head>
+  <body>
+
+    <div class="phone-screen">
+
+      <div class="header-container">
+        <div class="header">
+          <button id = "backButton">
+            <img src="icons/back.png" alt = "Back icon" class="header-icon">
+          </button>
+
+          <button id="appTitle">
+            <img src="icons/title.png" alt = "Title" class="header-title">
+          </button>
+
+          <button id="menu-btn">
+            <img src="icons/menu.png" alt = "Menu icon" class="header-icon">
+          </button>
+        </div>
+      </div>
+
+      <!--OVERLAY-->
+      <div class="overlay" id="overlay"></div>
+
+      <!--SIDEBAR-->
+      <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <nav>
+          <ul>
+            <li>
+              <a href="html/setting/setting.html">
+                <img src="settings.png" class="sidebar-icon" alt="Info">
+                Settings
+              </a>
+            </li>
+            <li>
+              <a href="CatchUpList.html">
+                <img src="list.png" class="sidebar-icon" alt="List">
+                Catch Up List
+              </a>
+            </li>
+            <li>
+              <a href="help.html">
+                <img src="help.png" class="sidebar-icon" alt="Help">
+                Help
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      
+
+    <!--ADD ACCOUNT FORM-->
+    <div class="body-container add-account">
+      <div class="page-title">
+        Add a Social<br />Account to catch up
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input
+          type="text"
+          id="username"
+          class="text-input"
+          placeholder="Enter a Username..."
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="platform">Platform:</label>
+        <div class="select-wrapper">
+          <select id="platform">
+            <option value=""hidden</option>
+            <option value="facebook" data-icon="icons/facebook.png">Facebook</option>
+            <option value="instagram" data-icon="icons/instagram.png">Instagram</option>
+            <option value="tiktok" data-icon="icons/tiktok.png">TikTok</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="add-btn">ADD</button>
+    </div>
+
+      <div class="footer-container">
+        <div class="footer-nav">
+          <button class = "footer-nav-button">
+            <img id="socialMediaButton" src="icons/socialmedia.png" alt="Social media icon" class="icon"><br>
+                Social Media
+            </button>
+            <button class = "footer-nav-button">
+              <img id="messageButton" src="icons/message.png" alt = "Message icon" class="icon"><br>
+              Message
+            </button>
+            <button class = "footer-nav-button" id = "searchButton">
+              <img id="searchButton" src="icons/search.png" alt="Search icon" class="icon"><br>
+              Search
+            </button>
+            <button class = "footer-nav-button" id = "profileButton">
+              <img id="profileButton" src="icons/profile.png" alt="Profile icon" class="icon"><br>
+              Profile
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+      document.getElementById("socialMediaButton").onclick = function () {
+          location.href = 'html/social_media/wrapped_Baby.html';
+      };
+
+      document.getElementById("messageButton").onclick = function () {
+          location.href = 'messaging.html';
+      };
+
+      document.getElementById("searchButton").onclick = function () {
+          location.href = 'post-search.html';
+      };
+
+      document.getElementById("profileButton").onclick = function () {
+          location.href = 'html/profiles/profile_Self.html';
+      };
+
+      document.getElementById("appTitle").addEventListener("click", () => {
+            window.location.href = "html/social_media/wrapped_Baby.html";
+            
+            const fromDate = document.getElementById("dateInputFrom").value;
+            const toDate = document.getElementById("dateInputTo").value;
+
+            localStorage.setItem("fromDate", fromDate);
+            localStorage.setItem("toDate", toDate);
+      });
+
+      const menuBtn = document.getElementById('menu-btn');
+      const closeBtn = document.getElementById('close-btn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay   = document.getElementById('overlay');
+
+      function openNav() {
+        sidebar.classList.add('open');
+        overlay.classList.add('visible');
+      }
+
+      function closeNav() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('visible');
+      }
+
+      // menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
+      // closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+      menuBtn .addEventListener('click', openNav);
+      closeBtn.addEventListener('click', closeNav);
+      overlay.addEventListener('click', closeNav);
+
+      document.addEventListener('click', e => {
+        if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+          closeNav();
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const STORAGE_KEY = 'catchUpAccounts';
+        const addBtn      = document.querySelector('.add-btn');
+        const usernameIn  = document.getElementById('username');
+        const platformIn  = document.getElementById('platform');
+
+        // shows red error message at the top of the form
+        function showError(msg) {
+          let errorDiv = document.getElementById('errorMsg');
+          if (!errorDiv) {
+            errorDiv = document.createElement('div');
+            errorDiv.id = 'errorMsg';
+            errorDiv.style.color = 'red';
+            errorDiv.style.textAlign = 'center';
+            errorDiv.style.margin = '0.5em 0';
+            const container = document.querySelector('.body-container.add-account');
+            container.insertBefore(errorDiv, container.firstChild);
+          }
+          errorDiv.textContent = msg;
+        }
+
+        addBtn.addEventListener('click', () => {
+          const username = usernameIn.value.trim();
+          const platform = platformIn.value;
+          if (!username || !platform) return;
+
+          const accounts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+          // duplicate check (so no duplictates can be created)
+          const duplicate = accounts.some(acc =>
+            acc.username === username && acc.platform === platform
+          );
+          if (duplicate) {
+            showError('Account was already added!');
+            return;
+          }
+
+          const previousError = document.getElementById('errorMsg');
+          if (previousError) previousError.textContent = '';
+
+          // adds account
+          accounts.push({ username, platform });
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
+          window.location.href = 'CatchUpList.html';
+        });
+      });
+    </script>
+  </body>
+  </html>

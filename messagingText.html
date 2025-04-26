@@ -1,0 +1,183 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=414, height=896, initial-scale=1.0">
+    <title>Catch Up App</title>
+    <link rel="stylesheet" href="messagingTextStyle.css">
+    <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+    <div class="phone-screen">
+        <div class="header-container">
+            <div class="header">
+              <button  id = "backButton">
+                <img src="icons/back.png" alt = "Back icon" class="header-icon">
+              </button>
+      
+              <button id = "appTitle">
+                <img src="icons/title.png" alt = "Title" class="header-title">
+              </button>
+      
+              <button id="menu-btn">
+                <img src="icons/menu.png" alt = "Menu icon" class="header-icon">
+              </button>
+            </div>
+        </div>
+    
+        <!--OVERLAY-->
+        <div class="overlay" id="overlay"></div>
+    
+        <!--SIDEBAR-->
+        <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn">×</button>
+        <nav>
+            <ul>
+            <li>
+                <a href="/html/setting/setting.html">
+                <img src="settings.png" class="sidebar-icon" alt="Info">
+                Settings
+                </a>
+            </li>
+            <li>
+                <a href="CatchUpList.html">
+                <img src="list.png" class="sidebar-icon" alt="List">
+                Catch Up List
+                </a>
+            </li>
+            <li>
+                <a href="help.html">
+                <img src="help.png" class="sidebar-icon" alt="Help">
+                Help
+                </a>
+            </li>
+            </ul>
+        </nav>
+        </aside>
+        <div class="body-container">
+            <div id="nametag">
+
+            </div>
+            <div id="messagesContainer" class="messagesContainer">
+                <div class="fromText">Hi</div>
+                <div class="fromText">How are you doing today? Well I hope</div>
+                <div class="toText">just fine</div>
+                <div class="fromText">OK Good!</div>
+            </div>
+            <div id="temp" class="textBox">
+                <textarea type="text" id="textInput"></textarea>
+            </div>
+        </div>
+        <div class="footer-container">
+            <div class="footer-nav">
+              <button class = "footer-nav-button">
+                <img id="socialMediaButton" src="/icons/socialmedia.png" alt="Social media icon" class="icon"><br>
+                 Social Media
+              </button>
+              <button class = "footer-nav-button-active">
+                <img id="messageButton" src="/icons/message.png" alt = "Message icon" class="icon"><br>
+                Message
+              </button>
+              <button class = "footer-nav-button" id = "searchNavigation">
+                <img id="searchButton" src="/icons/search.png" alt="Search icon" class="icon"><br>
+                Search
+              </button>
+              <button class = "footer-nav-button" id = "profileNavigation">
+                <img id="profileButton" src="/icons/profile.png" alt="Profile icon" class="icon"><br>
+                Profile
+              </button>
+            </div>
+        </div>
+    </div>
+    <script src="/script.js"></script>
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay   = document.getElementById('overlay');
+
+        function openNav() {
+            sidebar.classList.add('open');
+            overlay.classList.add('visible');
+        }
+
+        function closeNav() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('visible');
+        }
+
+        // menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
+        // closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+        menuBtn .addEventListener('click', openNav);
+        closeBtn.addEventListener('click', closeNav);
+        overlay.addEventListener('click', closeNav);
+
+        document.addEventListener('click', e => {
+            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+            closeNav();
+            }
+        });
+        document.getElementById("socialMediaButton").onclick = function () {
+            location.href = 'html/social_media/wrapped_Baby.html';
+        };
+
+        document.getElementById("messageButton").onclick = function () {
+            location.href = 'messaging.html';
+        };
+
+        document.getElementById("searchButton").onclick = function () {
+            location.href = 'post-search.html';
+        };
+
+        document.getElementById("profileButton").onclick = function () {
+            location.href = 'html/profiles/profile_Self.html';
+        };
+
+        document.getElementById("backButton").onclick = function () {
+            location.href = 'messaging.html';
+        };
+
+        var name = sessionStorage.getItem('contact');
+        document.getElementById("nametag").innerText=name;
+
+        document.getElementById("nametag").onclick = function () {
+            if (document.getElementById("nametag").innerText == "Bob") {
+                location.href = 'html/profiles/profile_Bob.html';
+            } else if (document.getElementById("nametag").innerText == "Margaret") {
+                location.href = 'html/profiles/profile_Margaret.html';
+            } else if (document.getElementById("nametag").innerText == "Philip") {
+                location.href = 'html/profiles/profile_Philip.html';
+            } else if (document.getElementById("nametag").innerText == "Greg") {
+                location.href = 'html/profiles/profile_Greg.html';
+            }
+        };
+
+        document.getElementById("temp").addEventListener("keydown", (event) => {
+            if (event.key == "Enter") {
+                var text = document.getElementById("textInput").value;
+                document.getElementById("textInput").value = "";
+                if (text == "" || text == "\n") {
+                    return;
+                }
+                var div = document.createElement("div");
+                div.innerText = text;
+                div.className = "toText";
+                document.getElementById("messagesContainer").appendChild(div);
+            }
+        });
+
+        document.getElementById("temp").addEventListener("keyup", (event) => {
+            if (event.key == "Enter") {
+                document.getElementById("textInput").value = "";
+            }
+        });
+
+        document.getElementById("appTitle").addEventListener("click", () => {
+            window.location.href = "/html/social_media/wrapped_Baby.html";
+            
+            const fromDate = document.getElementById("dateInputFrom").value;
+            const toDate = document.getElementById("dateInputTo").value;
+
+            localStorage.setItem("fromDate", fromDate);
+            localStorage.setItem("toDate", toDate);
+        });
+    </script>
+</body>
