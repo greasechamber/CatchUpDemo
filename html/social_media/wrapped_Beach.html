@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=414, height=896, initial-scale=1.0">
+  <title>Catch Up App</title>
+  <link rel="stylesheet" href="/css/wrappedStyle.css">
+  <link rel="stylesheet" href="/sidebar.css">
+  <!-- <script src="script.js"></script> -->
+</head>
+<body>
+
+  <div class="phone-screen">
+
+    <div class="header-container">
+      <div class="header">
+        <button id = "backButton">
+          <img src="/icons/back.png" alt = "Back icon" class="header-icon">
+        </button>
+
+        <button>
+          <img src="/icons/title.png" alt = "Title" class="header-title">
+        </button>
+
+        <button id="menu-btn">
+          <img src="/icons/menu.png" alt = "Menu icon" class="header-icon">
+        </button>
+      </div>
+    </div>
+
+    <!--OVERLAY-->
+    <div class="overlay" id="overlay"></div>
+
+    <!--SIDEBAR-->
+    <aside class="sidebar" id="sidebar">
+      <button class="close-btn" id="close-btn">×</button>
+      <nav>
+        <ul>
+          <li>
+            <a href="/html/setting/setting.html">
+              <img src="/settings.png" class="sidebar-icon" alt="Info">
+              Settings
+            </a>
+          </li>
+          <li>
+            <a href="/CatchUpList.html">
+              <img src="/list.png" class="sidebar-icon" alt="List">
+              Catch Up List
+            </a>
+          </li>
+          <li>
+            <a href="/help.html">
+              <img src="/help.png" class="sidebar-icon" alt="Help">
+              Help
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="body-container">
+      <div class="body-date-time">
+        <p>Your missed posts!</p>
+
+        <div class="date-picker-container">
+          <div class="date-group">
+            <label>From</label>
+            <span class="date-display" id="selectedDateFrom">Select a date</span>
+            <input type="date" id="dateInputFrom">
+          </div>
+        
+          <div class="date-group">
+            <label>To</label>
+            <span class="date-display" id="selectedDateTo">Select a date</span>
+            <input type="date" id="dateInputTo">
+          </div>
+          
+          <button id="confirmButton">
+            <img src="/icons/confirm.png" alt="Confirm icon">
+          </button>
+        </div>
+      </div>
+
+      <div class="body-post">
+        <div class="post-header">
+          <img class="avatar" src="/icons/male_black.png" alt="Avatar">
+          <span class="username">@jacksonabat</span>
+          <img class="platform" src="/icons/twitter.png" alt="Twitter">
+        </div>
+
+        <div class="post-image">
+          <button id = "prevPostButton">
+            <img src="/icons/post-previous.png" alt = "Previous icon" class = "nav-icon">
+          </button>
+
+          <img src="/images/beach.png" alt="baby" class = "post-image-img"/>
+
+          <button id = "nextPostButton">
+            <img src="/icons/post-next.png" alt = "Previous icon" class = "nav-icon">
+          </button>
+        </div>
+
+        <div class = "post-footer">
+          <div class = "post-icon">
+            <img src="/icons/heart.png" alt = "Heart icon" class = "footer-icon">
+            <img src="/icons/comment.png" alt = "Comment icon" class = "footer-icon">
+          </div>
+          <div class="timestamp">
+            <p>April 2nd, 2025</p>
+            <p>16:18:42</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-container">
+      <div class="footer-nav">
+        <button class = "footer-nav-button-active">
+          <img src="/icons/socialmedia.png" alt="Social media icon" class="icon"><br>
+           Social Media
+        </button>
+        <button class = "footer-nav-button" id = "messageNavigation">
+          <img src="/icons/message.png" alt = "Message icon" class="icon"><br>
+          Message
+        </button>
+        <button class = "footer-nav-button" id = "searchNavigation">
+          <img src="/icons/search.png" alt="Search icon" class="icon"><br>
+          Search
+        </button>
+        <button class = "footer-nav-button" id = "profileNavigation">
+          <img src="/icons/profile.png" alt="Profile icon" class="icon"><br>
+          Profile
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/script.js"></script>
+  <script>
+      const menuBtn = document.getElementById('menu-btn');
+      const closeBtn = document.getElementById('close-btn');
+      const sidebar = document.getElementById('sidebar');
+      const overlay   = document.getElementById('overlay');
+
+      function openNav() {
+        sidebar.classList.add('open');
+        overlay.classList.add('visible');
+      }
+
+      function closeNav() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('visible');
+      }
+
+      // menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
+      // closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+      menuBtn .addEventListener('click', openNav);
+      closeBtn.addEventListener('click', closeNav);
+      overlay.addEventListener('click', closeNav);
+
+      document.addEventListener('click', e => {
+        if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+          closeNav();
+        }
+      });
+    document.getElementById("prevPostButton").addEventListener("click", () => {
+        const fromDate = document.getElementById("dateInputFrom").value;
+        const toDate = document.getElementById("dateInputTo").value;
+
+        localStorage.setItem("fromDate", fromDate);
+        localStorage.setItem("toDate", toDate);
+        window.location.href = "/html/social_media/wrapped_Baby.html";
+    });
+
+    document.getElementById("nextPostButton").addEventListener("click", () => {
+        const fromDate = document.getElementById("dateInputFrom").value;
+        const toDate = document.getElementById("dateInputTo").value;
+
+        localStorage.setItem("fromDate", fromDate);
+        localStorage.setItem("toDate", toDate);
+        window.location.href = "/html/social_media/wrapped_Squirrel.html";
+    });
+
+    document.getElementById("profileNavigation").addEventListener("click", () => {
+      window.location.href = "/html/profiles/profile_Self.html";
+    });
+
+    document.getElementById("searchNavigation").addEventListener("click", () => {
+        window.location.href = "/post-search.html";
+    });
+
+    document.getElementById("messageNavigation").addEventListener("click", () => {
+        window.location.href = "/messaging.html";
+      });
+  </script>
+</body>
+</html>

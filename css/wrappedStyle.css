@@ -1,0 +1,451 @@
+body {
+  margin: 0;
+  background-color: black;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+  
+.phone-screen {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #333;
+}
+
+/* === Start Wrapper === */
+
+.header-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  background-color: #F2F4F7;
+  /* background-color: black; */
+  /* border-bottom: 3px solid #1d4e89; */
+}
+
+.body-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 375px;
+  height: 612px;
+  background-color: #F2F4F7;
+}
+
+.body-date-time{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  flex-direction: column;
+  /* background-color: black; */
+}
+
+.body-post{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 512px;
+}
+
+.footer-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  background-color: #F2F4F7;
+}
+
+/* ___ End wrapper ___ */
+
+
+/* === Start Header === */
+  
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px 20px; */
+  font-weight: bold;
+
+  width: 375px;
+  height: 80px;
+}
+
+.header button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: #1d4e89;
+  cursor: pointer;
+  font-family: monospace;
+  width: 70px;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.header-title {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 225px;
+}
+
+/* ___ End Header ___ */
+
+
+
+/* === Start Body === */
+
+.body-date-time p{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1d4e89;
+  font-size: 18px;
+  font-family: monospace;
+}
+
+.date-time-container {
+  width: 375;
+  height: 80px;
+}
+
+/* .date-picker-container {
+  position: relative;
+  display: inline-block;
+} */
+
+/* #dateInput {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.date-display {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  font-family: monospace;
+  color: #1d4e89;
+  cursor: pointer;
+} */
+
+.date-picker-container {
+  display: flex;
+  flex-direction: row; /* put them in one line */
+  gap: 5px;
+  justify-content: center;
+  /* align-items: flex-start; */
+  align-items: center;
+  font-family: monospace;
+  color: #1d4e89;
+}
+
+.date-picker-container img{
+  width: 20px;
+  height: 20px;
+}
+
+.date-picker-container button{
+  display: flex;
+  align-items: center;
+  /* color: none; */
+  background-color: #F2F4F7;
+  border: none;
+  cursor: pointer;
+}
+
+.date-picker-container button:hover{
+  background-color: #dce3eb;
+  border-radius: 30px;
+}
+
+.date-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  gap: 5px;
+  width: 150px;
+}
+
+.date-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.date-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 7px;
+  background-color: #f0f0f0;
+  /* background-color: black; */
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 12px;
+  width: 100px;
+}
+
+input[type="date"] {
+  position: absolute;
+  /* top: 36px; */
+  /* top: 100%; */
+  /* left: 0; */
+  /* left: 5%; */
+  /* right: 100%; */
+  opacity: 0;
+  width: 100%;
+  /* width: 40px; */
+  height: 40px;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: black; */
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-bottom: 5px; */
+  width: 100%;
+  height: 100px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.avatar {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.username {
+  flex-grow: 1;
+  margin-left: 10px;
+  font-size: 18px;
+  font-family: monospace;
+  /* font-weight: bold; */
+  color: #1d4e89;
+}
+
+.platform {
+  width: 25px;
+  height: 25px;
+}
+
+.post-image {
+  position: relative; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 375px;
+  height: 350px;
+}
+
+.post-image-img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.post-image button {
+  background: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1;
+}
+
+.post-image button:hover {
+  /* background-color: #00b2ca;    */
+  background-color: #dce3eb;
+  border: 1px solid #1d4e89;
+  color: #000;                 
+  border-radius: 20px;        
+  transition: 0.2s ease;      
+  /* height: 87px; */
+}
+
+.post-image button:first-child {
+  left: 10px;
+}
+
+.post-image button:last-child {
+  right: 10px;
+}
+
+.nav-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  width: 100%;
+  padding: 10px 12px;
+  height: 100px;
+  box-sizing: border-box;
+}
+
+.post-icons {
+  display: flex;
+  gap: 30px;
+}
+
+.footer-icon {
+  width: 35px;
+  height: 35px;
+}
+
+.timestamp {
+  text-align: right;
+  font-family: monospace;
+  font-size: 14px;
+  color: #1d4e89;
+  justify-content: center;
+  line-height: 1.2;
+  height: 100%; 
+}
+
+.timestamp p {
+  margin: 0;        
+  line-height: 1.2; 
+}
+
+/* ___ End Body ___ */
+  
+/* .date-range {
+  padding: 10px;
+  text-align: center;
+}
+  
+.range {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+  
+.date-btn {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 4px 10px;
+  background: white;
+}
+  
+.edit-icon {
+  cursor: pointer;
+}
+  */
+
+
+  
+
+  
+/* === Start Footer === */
+  
+.footer-nav {
+  display: flex;
+  width: 350px;
+  height: 80px;
+  justify-content: space-around;
+  /* background: #f79256; */
+  /* background: #1fbd1a2; */
+  /* background-color: #fbd1a2; */
+  background-color: #f79256;
+  padding: 0 0;
+  border-radius: 20px;
+  /* border-radius: ; */
+}
+
+.footer-nav-button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: #1d4e89;
+  cursor: pointer;
+  font-family: monospace;
+  width: 87px;
+}
+
+.footer-nav-button-active {
+  background: none;
+  border: none;
+  font-size: 9px;
+  color: #1d4e89;
+  cursor: pointer;
+  font-family: monospace;
+  width: 87px;
+
+  border: solid 2px #1d4e89;
+  border-radius: 20px;
+}
+
+.currentPage {
+  border: solid #1d4e89;
+  border-radius: 20px;
+}
+
+.footer-nav button p {
+  background-color: #1d4e89;
+  color: white;
+  width: 80px;
+  height: 12px;
+  border-radius: 20px;
+}
+
+.footer-nav .active {
+  font-weight: bold;
+  font-family: monospace;
+  color: #1d4e89;
+}
+
+.footer-nav button:hover {
+  background-color: #ffd6a0;   
+  color: #000;                 
+  border-radius: 20px;        
+  transition: 0.2s ease;      
+  width: 87px;
+  /* height: 87px; */
+}
+
+/* ___ End footer ___ */

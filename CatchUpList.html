@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=414, height=896, initial-scale=1.0" />
+  <title>Catch Up App</title>
+  <link rel="stylesheet" href="css/wrappedStyle.css" />
+  <link rel="stylesheet" href="sidebar.css" />
+  <link rel="stylesheet" href="addAccounts.css" />
+  <link rel="stylesheet" href="post-searchStyle.css" />
+</head>
+<body>
+  <div class="phone-screen">
+
+    <div class="header-container">
+      <div class="header">
+        <button id="backButton">
+          <img src="icons/back.png" alt="Back icon" class="header-icon">
+        </button>
+        <button id="appTitle">
+          <img src="icons/title.png" alt="Title" class="header-title">
+        </button>
+        <button id="menu-btn">
+          <img src="icons/menu.png" alt="Menu icon" class="header-icon">
+        </button>
+      </div>
+    </div>
+
+    <!--OVERLAY-->
+    <div class="overlay" id="overlay"></div>
+
+    <!--SIDEBAR-->
+    <aside class="sidebar" id="sidebar">
+      <button class="close-btn" id="close-btn">×</button>
+      <nav>
+        <ul>
+          <li>
+            <a href="html/setting/setting.html">
+              <img src="settings.png" class="sidebar-icon" alt="Info">
+              Settings
+            </a>
+          </li>
+          <li>
+            <a href="CatchUpList.html">
+              <img src="list.png" class="sidebar-icon" alt="List">
+              Catch Up List
+            </a>
+          </li>
+          <li>
+            <a href="help.html">
+              <img src="help.png" class="sidebar-icon" alt="Help">
+              Help
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!--CATCH UP LIST-->
+    <div class="body-container">
+      <!-- header row: title + add -->
+      <div class="list-header">
+        <div class="page-title">Catch Up List:</div>
+        <button class="add-btn" id="gotoAdd">+ ADD</button>
+      </div>
+
+      <div class = "search-results">
+        <!-- scrollable list -->
+          <div class="catch-up-list">
+            <div class="search-list" id="catchUpList"></div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-container">
+      <div class="footer-nav">
+        <button class = "footer-nav-button">
+            <img id="socialMediaButton" src="icons/socialmedia.png" alt="Social media icon" class="icon"><br>
+            Social Media
+        </button>
+        <button class = "footer-nav-button">
+          <img id="messageButton" src="icons/message.png" alt = "Message icon" class="icon"><br>
+          Message
+        </button>
+        <button class = "footer-nav-button" id = "searchNavigation">
+          <img id="searchButton" src="icons/search.png" alt="Search icon" class="icon"><br>
+          Search
+        </button>
+        <button class = "footer-nav-button" id = "profileNavigation">
+          <img id="profileButton" src="icons/profile.png" alt="Profile icon" class="icon"><br>
+          Profile
+        </button>
+      </div>
+    </div>
+
+  </div>
+  <script src="script.js"></script>
+  <script>
+    document.getElementById("socialMediaButton").onclick = function () {
+        location.href = 'html/social_media/wrapped_Baby.html';
+    };
+
+    document.getElementById("messageButton").onclick = function () {
+        location.href = 'messaging.html';
+    };
+
+    document.getElementById("searchButton").onclick = function () {
+        location.href = 'post-search.html';
+    };
+
+    document.getElementById("profileButton").onclick = function () {
+        location.href = 'html/profiles/profile_Self.html';
+    };
+
+    document.getElementById("appTitle").addEventListener("click", () => {
+            window.location.href = "/html/social_media/wrapped_Baby.html";
+            
+            const fromDate = document.getElementById("dateInputFrom").value;
+            const toDate = document.getElementById("dateInputTo").value;
+
+            localStorage.setItem("fromDate", fromDate);
+            localStorage.setItem("toDate", toDate);
+    });
+
+    document.getElementById("appTitle").addEventListener("click", () => {
+            window.location.href = "/html/social_media/wrapped_Baby.html";
+            
+            const fromDate = document.getElementById("dateInputFrom").value;
+            const toDate = document.getElementById("dateInputTo").value;
+
+            localStorage.setItem("fromDate", fromDate);
+            localStorage.setItem("toDate", toDate);
+    });
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+    function openNav() {
+      sidebar.classList.add('open');
+      overlay.classList.add('visible');
+    }
+    function closeNav() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+    }
+    menuBtn.addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    overlay.addEventListener('click', closeNav);
+    document.addEventListener('click', e => {
+      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) closeNav();
+    });
+  </script>
+
+  <script>
+  ;(function() {
+    const STORAGE_KEY = 'catchUpAccounts';
+    const defaultAccounts = [
+      { username: '@jacksonabat', platform: 'Facebook',   icon: 'facebook',  page: 'html/social_media/wrapped_Beach.html' },
+      { username: '@commonkat',  platform: 'TikTok',     icon: 'tiktok',    page: 'html/social_media/wrapped_Cat.html'   },
+      { username: '@Psikoe',     platform: 'Instagram', icon: 'instagram', page: 'html/social_media/wrapped_Squirrel.html' },
+      { username: '@veratar',    platform: 'Facebook',   icon: 'facebook',  page: 'html/social_media/wrapped_Baby.html'  },
+    ];
+
+    let accounts = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    const listRoot = document.getElementById('catchUpList');
+    const addBtn   = document.getElementById('gotoAdd');
+
+    function makeSearchRow(acc, removable, idx) {
+      // <div class="search-row">
+      const row = document.createElement('div');
+      row.className = 'search-row';
+
+      //   <button class="search-button">
+      const btn = document.createElement('button');
+      btn.className = 'search-button';
+      btn.addEventListener('click', () => window.location.href = acc.page);
+
+      //     <div> … holds avatar + text
+      const wrapper = document.createElement('div');
+
+      //       <img class="search-pfp">
+      const pfp = document.createElement('img');
+      pfp.className = 'search-pfp';
+      pfp.src       = 'icons/male_black.png';
+      wrapper.appendChild(pfp);
+
+      //       <div> … holds name + platform
+      const vtext = document.createElement('div');
+      vtext.id = 'vertical-text-1'; // you can reuse or omit an id here
+
+      const name = document.createElement('span');
+      name.className = 'search-name';
+      name.textContent = acc.username;
+      vtext.appendChild(name);
+
+      const icon = document.createElement('img');
+        icon.src       = `icons/${acc.icon}.png`;
+        icon.className = 'platform-icon';
+        wrapper.id ='vertical-text';
+
+      const plat = document.createElement('span');
+      plat.className = 'mono';
+      plat.textContent = acc.platform;
+      vtext.appendChild(plat);
+
+      wrapper.appendChild(vtext);
+      wrapper.appendChild(icon)
+      btn.appendChild(wrapper);
+      row.appendChild(btn);
+
+      // optional delete-X
+      if (removable) {
+        const del = document.createElement('img');
+        del.className = 'x-button';
+        del.title = 'Remove this account';
+        del.addEventListener('click', e => {
+          e.stopPropagation();
+          accounts.splice(idx, 1);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(accounts));
+          renderList();
+        });
+        const xi = document.createElement('img');
+        xi.className = 'x-button-image';
+        xi.src = 'icons/x.png';
+        del.appendChild(xi);
+        row.appendChild(del);
+      }
+
+      return row;
+    }
+
+    function renderList() {
+      listRoot.innerHTML = '';
+      // draw the 4 fixed
+      defaultAccounts.forEach(acc => {
+        listRoot.appendChild(makeSearchRow(acc, false));
+      });
+      // draw any added
+      accounts.forEach((acc, idx) => {
+        // ensure acc.platform is set
+        acc.platform = acc.platform || (acc.icon[0].toUpperCase() + acc.icon.slice(1));
+        listRoot.appendChild(makeSearchRow(acc, true, idx));
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderList();
+      addBtn.addEventListener('click', () => window.location.href = 'addAccounts.html');
+    });
+
+    window.addEventListener('storage', e => {
+      if (e.key === STORAGE_KEY) {
+        accounts = JSON.parse(e.newValue || '[]');
+        renderList();
+      }
+    });
+  })();
+</script>
+</body>
+</html>

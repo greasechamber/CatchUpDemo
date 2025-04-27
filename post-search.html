@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=414, height=896, initial-scale=1.0">
+  <title>Catch Up App</title>
+  <link rel="stylesheet" href="post-searchStyle.css">
+  <link rel="stylesheet" href="sidebar.css">
+  
+</head>
+<body>
+
+  <div class="phone-screen">
+
+    <div class="header-container">
+      <div class="header">
+        <button id = "backButton">
+          <img src="icons/back.png" alt = "Back icon" class="header-icon">
+        </button>
+
+        <button id = "appTitle">
+          <img src="icons/title.png" alt = "Title" class="header-title">
+        </button>
+
+        <button id="menu-btn">
+			<img src="icons/menu.png" alt = "Menu icon" class="header-icon">
+		  </button>
+		</div>
+	</div>
+
+	<!--OVERLAY-->
+	<div class="overlay" id="overlay"></div>
+
+	<!--SIDEBAR-->
+	<aside class="sidebar" id="sidebar">
+		<button class="close-btn" id="close-btn">×</button>
+		<nav>
+			<ul>
+			<li>
+				<a href="html/setting/setting.html">
+				<img src="settings.png" class="sidebar-icon" alt="Info">
+				Settings
+				</a>
+			</li>
+			<li>
+				<a href="CatchUpList.html">
+				<img src="list.png" class="sidebar-icon" alt="List">
+				Catch Up List
+				</a>
+			</li>
+			<li>
+				<a href="help.html">
+				<img src="help.png" class="sidebar-icon" alt="Help">
+				Help
+				</a>
+			</li>
+			</ul>
+		</nav>
+	</aside>
+
+    <div class="body-container">
+	  <div class = "search-bar">
+	  	<input type="text" placeholder="Search for post..." size="21" id = "search-bar">
+	  </div>
+	  <div class = "search-ribbon">
+		<button id="posts-button" >
+			Posts
+        </button>
+		<button id="contacts-button" >
+			Contacts
+		</button>
+  	  </div>
+	  	<div class = "search-results">
+			<div class = "search-row" id="srow1">
+				<button class="search-button" id="v_button">
+					<div>
+						<img class="search-pfp" src="icons/male_black.png">
+						<div id="vertical-text-1">
+							<span class="search-name">@veratar</span>
+							<span class="mono">Facebook</span>
+						</div>
+					</div>
+		        </button>
+				<button class="x-button" id = "x1">
+					<img class="x-button-image" src="icons/x.png">
+				</button>
+			</div>
+			<div class = "search-row" id="srow2">
+				<button class="search-button" id="ps_button">
+					<div>
+						<img class="search-pfp" src="icons/male_black.png">
+						<div id="vertical-text-2">
+							<span class="search-name">@Psikoe</span>
+							<span class="mono">Instagram</span>
+						</div>
+					</div>
+		        </button>
+				<button class="x-button">
+					<img class="x-button-image" src="icons/x.png" id="x2">
+				</button>
+			</div>
+			<div class = "search-row" id="srow3">
+				<button class="search-button" id="c_button">
+					<div>
+						<img class="search-pfp" src="icons/female_red.png">
+						<div id="vertical-text-3">
+							<span class="search-name">@commonkat</span>
+							<span class="mono">TikTok</span>
+						</div>
+					</div>
+		        </button>
+				<button class="x-button">
+					<img class="x-button-image" src="icons/x.png" id="x3">
+				</button>
+			</div>
+			<div class = "search-row" id="srow4">
+				<button class="search-button" id="j_button">
+					<div>
+						<img class="search-pfp" src="icons/male_blonde.png">
+						<div id="vertical-text-4">
+							<span class="search-name">@jacksonabat</span>
+							<span class="mono">Facebook</span>
+						</div>
+					</div>
+		        </button>
+				<button class="x-button">
+					<img class="x-button-image" src="icons/x.png" id= "x4">
+				</button>
+			</div>
+		</div>
+	  </div>
+  
+
+    <div class="footer-container">
+      <div class="footer-nav">
+        <button class = "footer-nav-button" id = "socialMediaNavigation">
+          <img src="icons/socialmedia.png" alt="Social media icon" class="icon"><br>
+           Social Media
+        </button>
+        <button class = "footer-nav-button" id = "messageNavigation">
+          <img src="icons/message.png" alt = "Message icon" class="icon"><br>
+          Message
+        </button>
+        <button class = "footer-nav-button-active">
+          <img src="icons/search.png" alt="Search icon" class="icon"><br>
+          Search
+        </button>
+        <button class = "footer-nav-button" id = "profileNavigation">
+          <img src="icons/profile.png" alt="Profile icon" class="icon"><br>
+          Profile
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+  <script> 
+  const post_search = true; 
+  </script>
+  <script src = "search.js"></script>
+  <script src="script.js"></script>
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay   = document.getElementById('overlay');
+
+    function openNav() {
+      sidebar.classList.add('open');
+      overlay.classList.add('visible');
+    }
+
+    function closeNav() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+    }
+
+    // menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
+    // closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+    menuBtn .addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    overlay.addEventListener('click', closeNav);
+
+    document.addEventListener('click', e => {
+      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+        closeNav();
+      }
+    });
+
+	document.getElementById("profileNavigation").addEventListener("click", () => {
+	  window.location.href = "html/profiles/profile_Self.html";
+	});
+
+	document.getElementById("socialMediaNavigation").addEventListener("click", () => {
+        window.location.href = "/html/social_media/wrapped_Baby.html";
+        
+        const fromDate = document.getElementById("dateInputFrom").value;
+        const toDate = document.getElementById("dateInputTo").value;
+
+        localStorage.setItem("fromDate", fromDate);
+        localStorage.setItem("toDate", toDate);
+    });
+
+	document.getElementById("appTitle").addEventListener("click", () => {
+        window.location.href = "/html/social_media/wrapped_Baby.html";
+        
+        const fromDate = document.getElementById("dateInputFrom").value;
+        const toDate = document.getElementById("dateInputTo").value;
+
+        localStorage.setItem("fromDate", fromDate);
+        localStorage.setItem("toDate", toDate);
+    });
+
+	document.getElementById("messageNavigation").addEventListener("click", () => {
+        window.location.href = "messaging.html";
+    });
+  </script>
+</body>
+</html>

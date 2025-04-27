@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=375,initial-scale=1.0">
+  <title>Catch Up – Settings</title>
+  <!-- your main styles (header/footer/profile shared styles) -->
+  <!-- <link rel="stylesheet" href="/css/profiles.css"> -->
+  <link rel="stylesheet" href="/css/settings.css">
+  <link rel="stylesheet" href="/sidebar.css">
+</head>
+<body>
+  <div class="phone-screen">
+
+    <!-- HEADER -->
+    <div class="header-container">
+      <div class="header">
+        <button id="backButton">
+          <img src="/icons/back.png" alt="Back" class="header-icon">
+        </button>
+        <button id = "appTitle">
+          <img src="/icons/title.png" alt="Catch Up" class="header-title">
+        </button>
+        <button id="menu-btn">
+          <img src="/icons/menu.png" alt = "Menu icon" class="header-icon">
+        </button>
+      </div>
+    </div>
+
+    <!--OVERLAY-->
+    <div class="overlay" id="overlay"></div>
+
+    <!--SIDEBAR-->
+    <aside class="sidebar" id="sidebar">
+      <button class="close-btn" id="close-btn">×</button>
+      <nav>
+        <ul>
+          <li>
+            <a href="/html/setting/setting.html">
+              <img src="/settings.png" class="sidebar-icon" alt="Info">
+              Settings
+            </a>
+          </li>
+          <li>
+            <a href="/CatchUpList.html">
+              <img src="/list.png" class="sidebar-icon" alt="List">
+              Catch Up List
+            </a>
+          </li>
+          <li>
+            <a href="/help.html">
+              <img src="/help.png" class="sidebar-icon" alt="Help">
+              Help
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- BODY -->
+    <div class="body-container">
+      <h2 class="settings-title">Settings</h2>
+
+      <div class="settings-card">
+
+        <div class="settings-section account">
+          <div class="settings-label">Account</div>
+    
+          <!-- 1) Edit Profile button -->
+          <div class="settings-row">
+            <button
+              onclick="location.href='/html/profiles/profile_Self.html'"
+              class="btn btn-edit mono"
+            >
+              Edit Profile
+            </button>
+          </div>
+    
+          <!-- 2) Sign Out button -->
+          <div class="settings-row">
+            <button id="signOutBtn" class="btn btn-signout mono">
+              Sign Out
+            </button>
+          </div>
+    
+          <!-- 3) Delete Account button -->
+          <div class="settings-row">
+            <button id="deleteBtn" class="btn btn-delete mono">
+              Delete Account
+            </button>
+          </div>
+        </div>
+
+        <!-- Preferences -->
+        <div class="settings-section">
+          <div class="settings-label">Preferences</div>
+          <div class="settings-row" style="justify-content:flex-start; gap: 24px;">
+            <label class="mono">
+              <input type="checkbox" id="pushNotifs"> Push Notifications
+            </label>
+            <!-- <label class="mono">
+              <input type="checkbox" id="autoDark"> Dark Mode
+            </label> -->
+          </div>
+          <div class="settings-row" style="justify-content:flex-start; gap: 24px;">
+            <!-- <label class="mono">
+              <input type="checkbox" id="pushNotifs"> Push Notifications
+            </label> -->
+            <label class="mono">
+              <input type="checkbox" id="autoDark"> Change Color Theme
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+      <!-- FOOTER -->
+  <div class="footer-container">
+    <div class="footer-nav">
+      <button class = "footer-nav-button" id = "socialMediaNavigation">
+        <img src="/icons/socialmedia.png" alt="Social media icon" class="icon"><br>
+         Social Media
+      </button>
+      <button class = "footer-nav-button" id = "messageNavigation">
+        <img src="/icons/message.png" alt = "Message icon" class="icon"><br>
+        Message
+      </button>
+      <button class = "footer-nav-button" id = "searchNavigation">
+        <img src="/icons/search.png" alt="Search icon" class="icon"><br>
+        Search
+      </button>
+      <button class = "footer-nav-button-active" id = "profileNavigation">
+        <img src="/icons/profile.png" alt="Profile icon" class="icon"><br>
+        Profile
+      </button>
+    </div>
+  </div>
+
+
+  </div>
+
+  <script src="/script.js"></script>
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay   = document.getElementById('overlay');
+
+    function openNav() {
+      sidebar.classList.add('open');
+      overlay.classList.add('visible');
+    }
+
+    function closeNav() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+    }
+
+    // menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
+    // closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+    menuBtn .addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    overlay.addEventListener('click', closeNav);
+
+    document.addEventListener('click', e => {
+      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+        closeNav();
+      }
+    });
+    // Back button
+    document.getElementById('backButton').addEventListener('click', () => {
+      window.history.back();
+    });
+
+    // Sign out / delete account (your existing confirm logic lives in script.js)
+
+    // Auto Dark-Mode toggle
+    const darkCheckbox = document.getElementById('autoDark');
+    darkCheckbox.addEventListener('change', () => {
+      document.body.classList.toggle('dark-mode', darkCheckbox.checked);
+      // optionally persist preference:
+      // localStorage.setItem('darkMode', darkCheckbox.checked);
+    });
+
+    // On load, restore dark‐mode if previously checked:
+    // if (localStorage.getItem('darkMode') === 'true') {
+    //   darkCheckbox.checked = true;
+    //   document.body.classList.add('dark-mode');
+    // }
+  </script>
+  <script>
+    document.getElementById("socialMediaNavigation").addEventListener("click", () => {
+        window.location.href = "/html/social_media/wrapped_Baby.html";
+        
+        const fromDate = document.getElementById("dateInputFrom").value;
+        const toDate = document.getElementById("dateInputTo").value;
+
+        localStorage.setItem("fromDate", fromDate);
+        localStorage.setItem("toDate", toDate);
+    });
+
+    document.getElementById("appTitle").addEventListener("click", () => {
+        window.location.href = "/html/social_media/wrapped_Baby.html";
+        
+        const fromDate = document.getElementById("dateInputFrom").value;
+        const toDate = document.getElementById("dateInputTo").value;
+
+        localStorage.setItem("fromDate", fromDate);
+        localStorage.setItem("toDate", toDate);
+    });
+  </script>
+  <script>
+    document.getElementById("profileNavigation").addEventListener("click", () => {
+      window.location.href = "/html/profiles/profile_Self.html";
+    });
+
+    document.getElementById("searchNavigation").addEventListener("click", () => {
+        window.location.href = "/post-search.html";
+    });
+
+    document.getElementById("messageNavigation").addEventListener("click", () => {
+        window.location.href = "/messaging.html";
+    });
+  </script>
+</body>
+</html>

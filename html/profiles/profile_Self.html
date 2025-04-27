@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=375,initial-scale=1.0">
+  <title>Catch Up – Profile</title>
+  <!-- <link rel="stylesheet" href="wrappedStyle.css"> -->
+  <link rel="stylesheet" href="/css/profiles.css">
+  <link rel="stylesheet" href="/sidebar.css">
+</head>
+<body>
+  <div class="phone-screen">
+
+    <div class="header-container">
+      <div class="header">
+        <button id="backButton">
+          <img src="/icons/back.png" alt="Back" class="header-icon">
+        </button>
+        <button id="appTitle">
+          <img src="/icons/title.png" alt="Catch Up" class="header-title">
+        </button>
+        <button id="menu-btn">
+          <img src="/icons/menu.png" alt = "Menu icon" class="header-icon">
+        </button>
+        </div>
+    </div>
+
+    <!--OVERLAY-->
+    <div class="overlay" id="overlay"></div>
+
+    <!--SIDEBAR-->
+    <aside class="sidebar" id="sidebar">
+      <button class="close-btn" id="close-btn">×</button>
+      <nav>
+        <ul>
+          <li>
+            <a href="/html/setting/setting.html">
+              <img src="/settings.png" class="sidebar-icon" alt="Info">
+              Settings
+            </a>
+          </li>
+          <li>
+            <a href="/CatchUpList.html">
+              <img src="/list.png" class="sidebar-icon" alt="List">
+              Catch Up List
+            </a>
+          </li>
+          <li>
+            <a href="/help.html">
+              <img src="/help.png" class="sidebar-icon" alt="Help">
+              Help
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <div class="body-container">
+      <!-- <div class="page-title">Personal Profile</div> -->
+      <div class="profile-page">
+      <div class="profile-card">
+        <!-- <div class="avatar-wrapper"> -->
+          <img src="/icons/female_red.png" alt="Avatar" class="profile-avatar">
+        <!-- </div> -->
+        <h2 class="profile-name">ItsYou!</h2>
+
+        <p class="profile-info-line">
+          <span>Awake From:</span>
+          <span class="mono">23:00 – 09:30</span>
+        </p>
+        <p class="profile-info-line">
+          <span>E-mail:</span>
+          <span class="mono">hithere123@hotmail.com</span>
+        </p>
+
+        <div class="bio-label">Bio Description:</div>
+        <div class="bio-text mono">
+          Transitioning to working night shifts, trying to stay caught up with what I miss from my friends through this app!
+        </div>
+
+        <div class="action-buttons-self">
+          <button id="editBtn"     type="button" class="btn btn-edit mono">Edit</button>
+          <button id="saveBtn"     type="button" class="btn btn-signout mono" style="display:none">Save</button>
+          <button id="cancelBtn"   type="button" class="btn btn-delete mono" style="display:none">Cancel</button>
+        </div>
+      
+        <button id="signOutBtn" type="button" class="btn btn-signout mono">Sign Out</button>
+        <button id="deleteBtn"  type="button" class="btn btn-delete mono">Delete Account</button>
+      </div>
+      </div>
+    </div>
+
+    <div class="footer-container">
+      <div class="footer-nav">
+        <button class = "footer-nav-button" id = "socialMediaNavigation">
+          <img src="/icons/socialmedia.png" alt="Social media icon" class="icon"><br>
+           Social Media
+        </button>
+        <button class = "footer-nav-button" id = "messageNavigation">
+          <img src="/icons/message.png" alt = "Message icon" class="icon"><br>
+          Message
+        </button>
+        <button class = "footer-nav-button" id = "searchNavigation">
+          <img src="/icons/search.png" alt="Search icon" class="icon"><br>
+          Search
+        </button>
+        <button class = "footer-nav-button-active" id = "profileNavigation">
+          <img src="/icons/profile.png" alt="Profile icon" class="icon"><br>
+          Profile
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/script.js"></script>
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const closeBtn = document.getElementById('close-btn');
+    const sidebar = document.getElementById('sidebar');
+    const overlay   = document.getElementById('overlay');
+
+    function openNav() {
+      sidebar.classList.add('open');
+      overlay.classList.add('visible');
+    }
+
+    function closeNav() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+    }
+
+    // menuBtn.addEventListener('click', () => sidebar.classList.add('open'));
+    // closeBtn.addEventListener('click', () => sidebar.classList.remove('open'));
+    menuBtn .addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    overlay.addEventListener('click', closeNav);
+
+    document.addEventListener('click', e => {
+      if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+        closeNav();
+      }
+    });
+    document.getElementById("socialMediaNavigation").addEventListener("click", () => {
+        window.location.href = "/html/social_media/wrapped_Baby.html";
+        
+        const fromDate = document.getElementById("dateInputFrom").value;
+        const toDate = document.getElementById("dateInputTo").value;
+
+        localStorage.setItem("fromDate", fromDate);
+        localStorage.setItem("toDate", toDate);
+    });
+
+    document.getElementById("appTitle").addEventListener("click", () => {
+        window.location.href = "/html/social_media/wrapped_Baby.html";
+        
+        const fromDate = document.getElementById("dateInputFrom").value;
+        const toDate = document.getElementById("dateInputTo").value;
+
+        localStorage.setItem("fromDate", fromDate);
+        localStorage.setItem("toDate", toDate);
+    });
+
+    document.getElementById("searchNavigation").addEventListener("click", () => {
+        window.location.href = "/post-search.html";
+    });
+
+    document.getElementById("messageNavigation").addEventListener("click", () => {
+        window.location.href = "/messaging.html";
+    });
+  </script>
+</body>
+</html>

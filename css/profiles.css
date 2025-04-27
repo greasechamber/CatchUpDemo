@@ -1,0 +1,478 @@
+body {
+  margin: 0;
+  background-color: black;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+  
+.phone-screen {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #333;
+  background-color: #F2F4F7;
+  align-items: center;
+}
+
+/* === Start Wrapper === */
+
+.header-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  background-color: #F2F4F7;
+  /* background-color: black; */
+  /* border-bottom: 3px solid #1d4e89; */
+  position: relative;  /* necessary for z-index to apply */
+  z-index: 10;
+}
+
+.body-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 375px;
+  height: 612px;
+  background-color: #F2F4F7;
+}
+
+/* .body-date-time{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  flex-direction: column;
+  /* background-color: black; */
+/* } */ */
+
+.body-post{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 512px;
+}
+
+.footer-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  background-color: #F2F4F7;
+}
+
+/* ___ End wrapper ___ */
+
+
+/* === Start Header === */
+  
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px 20px; */
+  font-weight: bold;
+
+  width: 375px;
+  height: 80px;
+}
+
+.header button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: #1d4e89;
+  cursor: pointer;
+  font-family: monospace;
+  width: 70px;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.header-title {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 225px;
+}
+
+/* ___ End Header ___ */
+
+/* ——— PROFILE PAGE ADDITIONS ——— */
+
+.profile-page {
+  /* flex: 1; */
+  background: #F2F4F7;
+  /* padding-top: 10px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;            /* pull it down below the header */
+  padding-bottom: 20px;         /* optional: give it room above the footer */
+  box-sizing: border-box;
+}
+
+.page-title {
+  align-self: flex-start;
+  margin-left: 16px;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+/* card container */
+.profile-card {
+  width: 335px;
+  height: 620px;
+  background: F2F4F7;
+  border-radius: 16px;
+  padding: 20px 16px;
+  /* box-shadow: 0 2px 6px rgba(0,0,0,0.1); */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* avatar holder */
+/* .avatar-wrapper {
+  width: 140px;
+  height: 80px;
+  background: #888;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+.profile-avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #00b2ca; /* or whatever placeholder */
+  /* margin-bottom: 5px; */
+}
+
+/* name */
+.profile-name {
+  margin: 0;
+  font-size: 30px;
+  font-family: monospace;
+  color: #1d4e89;
+}
+
+/* info lines */
+.profile-info-line {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #1d4e89;
+  display: flex;
+  gap: 5px;
+  justify-content: flex-start;
+  text-align: left;
+}
+.profile-name {
+  margin: 0 0 12px;     /* bottom margin only */
+}
+.profile-info-line .mono {
+  font-family: monospace;
+  justify-content: flex-start;
+  align-items: left;
+  text-align: left;
+}
+.profile-card .profile-info-line {
+  width: 100%;             
+  align-self: flex-start; 
+  text-align: left;      
+  /* padding-left: 16px;       */
+  box-sizing: border-box; 
+}
+.profile-card .profile-info-line span:first-child {
+  font-weight: bold;
+}
+/* bio */
+.profile-card .bio-label {
+  align-self: flex-start;
+  text-align: left;
+  font-size: 15px;
+  color: #1d4e89;
+  font-weight: bold;
+  margin: 0 0 8px; 
+}
+.profile-card .bio-text {
+  width: 100%;
+  background: #DDD;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 14px;
+  color: #1d4e89;
+  line-height: 1.4;
+  height: 180px;         /* choose a common height */
+  margin-bottom: 20px;   /* space before buttons */
+  overflow-y: auto;
+  /* white-space: pre-wrap; */
+  display: block !important;      /* ensure it’s a block */
+  text-align: left !important;   
+  justify-content: initial !important;  /* kill any stray flex justify */
+  /* align-self: flex-start !important; */
+}
+
+/* buttons */
+.btn {
+  width: 80%;
+  max-width: 300px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 4px;
+}
+.btn-edit {
+  background: #DDD;
+  border: 1px solid #1d4e89;
+  border-radius: 12px;
+  padding: 8px 0;
+  width: 250px; 
+  height: 50px;
+  color: #1d4e89;
+  font-size: 22px;
+  margin: 0 auto 12px;
+}
+.btn-signout {
+  background: #00b2ca;
+  border: 1px solid #1d4e89;
+  border-radius: 12px;
+  padding: 12px 0;
+  color: #fff;
+  height: 50px;
+  font-size: 22px;
+  width: 250px;
+  margin: 0 auto 12px;
+  /* font-weight: bold; */
+}
+.btn-delete {
+  background: #E07A7A;
+  border: 1px solid #1d4e89;
+  border-radius: 12px;
+  padding: 6px 0;
+  color: #FFF;
+  width: 160px; 
+  margin: 0 auto; 
+}
+/* container for the two side-by-side buttons */
+.action-buttons {
+  display: flex;
+  gap: 12px;               /* space between buttons */
+  width: 100%;             /* fill the card’s width */
+  justify-content: center; /* center the pair */
+  margin-bottom: 16px;     /* space before the footer/nav */
+}
+
+/* let each button flex to equal width (caps at 150px) */
+.action-buttons .btn {
+  flex: 1;
+  max-width: 150px;
+}
+
+/* style for the new “Unfollow” button */
+.btn-unfollow {
+  background: #E07A7A;
+  border: 1px solid #1d4e89;
+  border-radius: 12px;
+  padding: 8px 0;
+  width: 250px; 
+  height: 50px;
+  color: #1d4e89;
+  font-size: 22px;
+  margin: 0 auto 12px;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.btn-follow {
+  background: #00b2ca;
+  border: 1px solid #1d4e89;
+  border-radius: 12px;
+  padding: 8px 0;
+  width: 250px; 
+  height: 50px;
+  color: #FFF;
+  font-size: 22px;
+  margin: 0 auto 12px;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* ——— EDIT MODE STYLES ——— */
+
+/* textarea matches your bio pill */
+.bio-text-edit {
+  width: 100%;
+  background: #DDD;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-family: monospace;
+  font-size: 14px;
+  color: #1d4e89;
+  line-height: 1.4;
+  box-sizing: border-box;
+  resize: none;      /* optional: prevent manual resize */
+  margin-bottom: 12px;
+  height: 180px;
+}
+
+/* cancel button: same size as Save (btn-edit) but red */
+.btn-cancel {
+  background: #E07A7A;
+  border: 1px solid #1d4e89;
+  border-radius: 12px;
+  padding: 8px 0;
+  width: 250px;
+  height: 50px;
+  color: #FFF;
+  font-size: 22px;
+  margin: 0 auto 12px;
+}
+
+/* monospace helper */
+.mono {
+  font-family: monospace;
+}
+
+/* highlight the active footer icon */
+.footer-nav button.active {
+  background: rgba(0,0,0,0.05);
+  border-radius: 50%;
+}
+
+
+/* === Start Footer === */
+  
+.footer-nav {
+  display: flex;
+  width: 350px;
+  height: 80px;
+  justify-content: space-around;
+  /* background: #f79256; */
+  /* background: #1fbd1a2; */
+  /* background-color: #fbd1a2; */
+  background-color: #f79256;
+  padding: 0 0;
+  border-radius: 20px;
+  /* border-radius: ; */
+}
+
+.footer-nav-button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: #1d4e89;
+  cursor: pointer;
+  font-family: monospace;
+  width: 87px;
+}
+
+.footer-nav-button-active {
+  background: none;
+  border: none;
+  font-size: 9px;
+  color: #1d4e89;
+  cursor: pointer;
+  font-family: monospace;
+  width: 87px;
+
+  border: solid 2px #1d4e89;
+  border-radius: 20px;
+}
+
+.currentPage {
+  border: solid #1d4e89;
+  border-radius: 20px;
+}
+
+.footer-nav button p {
+  background-color: #1d4e89;
+  color: white;
+  width: 80px;
+  height: 12px;
+  border-radius: 20px;
+}
+
+.footer-nav .active {
+  font-weight: bold;
+  font-family: monospace;
+  color: #1d4e89;
+}
+
+.footer-nav button:hover {
+  background-color: #ffd6a0;   
+  color: #000;                 
+  border-radius: 20px;        
+  transition: 0.2s ease;      
+  width: 87px;
+  /* height: 87px; */
+}
+
+/* ___ End footer ___ */
+
+.bio-text,
+.bio-text-edit {
+  width: 100%;
+  height: 180px;                    /* same fixed height */
+  box-sizing: border-box;           /* include padding/border */
+  background: #DDD;
+  border: 1px solid #1d4e89;
+  border-radius: 12px;
+  padding: 12px;
+  font-family: monospace;
+  font-size: 14px;
+  color: #1d4e89;
+  line-height: 1.4;
+  overflow-y: auto;
+  resize: none;                     /* optional */
+  margin-bottom: 12px;              /* space before buttons */
+}
+
+/* ——— MATCH SAVE & CANCEL TO EDIT BUTTON SIZE ——— */
+#saveBtn,
+#cancelBtn {
+  display: block;                   /* will be toggled via JS */
+  width: 150px;
+  height: 50px;
+  font-size: 22px;
+  margin: 0 auto 12px;             /* center + bottom gap */
+  border-radius: 12px;
+  border: 1px solid #1d4e89;
+  cursor: pointer;
+}
+
+/* Save = grey like the Edit button */
+#cancelBtn {
+  background: #DDD;
+  color: #1d4e89;
+}
+
+/* Cancel = red like the Delete button */
+#saveBtn {
+  background: #86e9cb;
+  color: #1d4e89;
+}

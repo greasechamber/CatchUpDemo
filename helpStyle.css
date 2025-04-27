@@ -1,0 +1,209 @@
+
+body {
+  margin: 0;
+  background-color: black;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+  
+.phone-screen {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #333;
+}
+
+/* === Start Wrapper === */
+
+.header-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  background-color: #F2F4F7;
+  /* background-color: black; */
+}
+
+.body-container{
+	color: #1d4e89;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 285px;
+  height: 612px;
+  margin-left: 45px;
+  text-align: center;
+  /* background-color: black; */
+}
+
+.body-date-time{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+}
+
+.body-post{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 512px;
+}
+
+.footer-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 375px;
+  height: 100px;
+  background-color: #F2F4F7;
+}
+
+/* ___ End wrapper ___ */
+
+
+/* === Start Header === */
+
+  
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px 20px; */
+  font-weight: bold;
+
+  width: 375px;
+  height: 80px;
+}
+
+.header button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: #1d4e89;
+  cursor: pointer;
+  font-family: monospace;
+  width: 70px;
+}
+
+.header-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.header-title {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 50px;
+  width: 225px;
+}
+
+/* ___ End Header ___ */
+
+
+
+/* === Start Body === */
+
+.help_name {
+	
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.mono {
+	font-family: monospace;
+}
+/* ___ End Body ___ */
+  
+/* .date-range {
+  padding: 10px;
+  text-align: center;
+}
+  
+.range {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 5px;
+}
+  
+.date-btn {
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 4px 10px;
+  background: white;
+}
+  
+.edit-icon {
+  cursor: pointer;
+}
+  
+.post-card {
+  flex-grow: 1;
+  padding: 10px;
+} */
+
+
+  
+
+  
+/* === Start Footer === */
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+  
+.footer-nav {
+  display: flex;
+  width: 350px;
+  height: 80px;
+  justify-content: space-around;
+  background: #fca868;
+  padding: 0 0;
+  border-radius: 20px;
+}
+
+.footer-nav button {
+  background: none;
+  border: none;
+  font-size: 10px;
+  color: #1d4e89;
+  cursor: pointer;
+  font-family: monospace;
+  width: 87px;
+}
+
+.footer-nav .active {
+  font-weight: bold;
+  font-family: monospace;
+  color: #1d4e89;
+}
+
+.footer-nav button:hover {
+  background-color: #ffd6a0;   
+  color: #000;                 
+  border-radius: 20px;        
+  transition: 0.2s ease;      
+  width: 87px;
+  /* height: 87px; */
+}
+
+
+
+/* ___ End footer ___ */
